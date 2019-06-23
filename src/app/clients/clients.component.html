@@ -1,0 +1,15 @@
+<!-- <div>{{clients|json}}</div> -->
+
+<div>&nbsp;</div>
+
+<p class="lead">
+  Lista klijenata
+</p>
+
+<div class="card">
+  <ul class="list-group list-group-flush">
+    <li *ngFor="let c of clients" class="list-group-item">
+      {{ c.name }} {{ c.address }} {{ c.city }}
+    </li>
+  </ul>
+</div>

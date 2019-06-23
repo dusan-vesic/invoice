@@ -1,0 +1,294 @@
+<div>&nbsp;</div>
+
+<p class="lead">
+  {{ user?.name }}
+</p>
+
+<div class="row">
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-header">
+        Prodavac
+        <i [routerLink]="['/settings']" class="fa fa-navicon float-right hover" style="font-size:22px" (click)="null"></i>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Adresa
+          <span class='float-right'>{{ user?.address }}</span>
+        </li>
+        <li class="list-group-item">
+          Telefon
+          <span class="float-right">{{ user?.tel }}</span>
+        </li>
+        <li class="list-group-item">
+          Ziro racun
+          <span class="float-right">{{ user?.ziro }}</span>
+        </li>
+        <li class="list-group-item">
+          Maticni broj
+          <span class="float-right">{{ user?.mat }}</span>
+        </li>
+        <li class="list-group-item">
+          Registarski broj
+          <span class="float-right">{{ user?.reg }}</span>
+        </li>
+        <li class="list-group-item">
+          Sifra delatnosti
+          <span class="float-right">{{ user?.sif }}</span>
+        </li>
+        <li class="list-group-item">
+          PIB
+          <span class="float-right">{{ user?.pib }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div>&nbsp;</div>
+
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-header">
+        Kupac
+        <i class="fa fa-navicon float-right" style="font-size:22px" (click)="openModal(template2)"></i>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Naziv
+          <span class="float-right">{{ client?.name }}</span>
+        </li>
+        <li class="list-group-item">
+          Adresa
+          <span class="float-right">{{ client?.address }}</span>
+        </li>
+        <li class="list-group-item">
+          Grad
+          <span class="float-right">{{ client?.city }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div>&nbsp;</div>
+
+<!-- basic info -->
+<div class="row">
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-header">
+        Osnovni podaci
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="form-group row">
+            <label for="city" class="col-sm-2 col-form-label">Grad</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="city" name="city" [(ngModel)]="city">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="date" class="col-sm-2 col-form-label">Datum</label>
+            <div class="col-sm-10">
+              <input id="date" placeholder="Datepicker" class="form-control" bsDatepicker [bsValue]="today"
+                (bsValueChange)="onValueChange($event)">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label class="col-sm-2 col-form-label" for="type">Tip</label>
+            <div class="col-sm-10">
+              <select id="type" [(ngModel)]="option" name='option' class="form-control">
+                <option [selected]="option === 'racun'" value="racun">Racun</option>
+                <option value="predracun">Predracun</option>
+              </select>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="invoid-number" class="col-sm-2 col-form-label">Br. Racuna</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="invoice-number" name="invoice-number" [(ngModel)]="invoiceNumber">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="tax" class="col-sm-2 col-form-label">PDV</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="tax" name="tax" [(ngModel)]="tax">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div> <!-- basic info -->
+
+<div>&nbsp;</div>
+
+<!-- todo: add sticky-top class -->
+<div class="row">
+  <div class="col-sm">
+    <div style="padding: 5px 0;">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-secondary" (click)="openModal(template)">
+          <i class="fa fa-plus"></i>
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="generatePDF()">
+          <i class="fa fa-print"></i>
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="save()">
+          <i class="fa fa-save"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div>{{ categories|json }}</div> -->
+
+<div class="row" *ngIf="categories.length < 1">
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-body">
+        Nema unosa
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-container *ngFor="let c of categories">
+  <div class="card text-white bg-dark" style="margin-bottom: 5px">
+    <div class="card-body">
+      <div style="display: flex; justify-content: space-between;">
+        <div>
+          {{ c.category }}
+        </div>
+        <div style="vertical-align: baseline;">
+          Cena: {{ getTotal(c.category) | number:'.2'  }}
+          Porez: {{ (getTotal(c.category) * .18) | number:'.2'}}
+          Ukupno: {{ (getTotal(c.category) + getTotal(c.category) * .18) | number:'.2' }}
+        </div>
+        <div>
+          <i class="fa fa-trash hover" (click)="removeCategory(c.category)"></i>
+          <span>&nbsp;</span>
+          <i class="fa fa-plus hover" (click)="addItem(c.category)"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngFor="let i of c.items" class="card" style="margin-bottom: 5px">
+    <div class="card-body">
+      <form>
+        <div class="form-group row">
+          <label for="service" class="col-sm-2 col-form-label col-form-label-sm">Naziv usluge</label>
+          <div class="col-sm-10">
+            <textarea (keyup)="change(c.category, i.id, service.value, 'service')" #service class="form-control"
+              id="service" rows="3"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="price" class="col-sm-2 col-form-label col-form-label-sm">Cena</label>
+          <div class="col-sm-10">
+            <input (keyup)="change(c.category, i.id, price.value, 'price')" #price id="price"
+              class="form-control form-control-sm">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="amount" class="col-sm-2 col-form-label col-form-label-sm">Kolicina</label>
+          <div class="col-sm-10">
+            <input (keyup)="change(c.category, i.id, amount.value, 'amount')" #amount type="text"
+              class="form-control form-control-sm" id="amount">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label col-form-label-sm" for="unit">Jedinica </label>
+          <div class="col-sm-10">
+            <select #unit id="unit" name='unit' class="form-control" 
+              (change)="change(c.category, i.id, unit.value, 'unit')">
+              <option></option>
+              <option value="m">Metar</option>
+              <option value="kom">Komad</option>
+            </select>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="card-footer">
+      <i class="fa fa-trash hover float-right" (click)="removeItemFromCategory(c.title, i)"></i>
+      <div class="text-left">
+        <span>Cena: {{ i.amount && i.price ? (i.amount * i.price | number:'.2') : 0 | number:'.2' }}</span>
+        <span> Porez: {{ i.amount && i.price ? (i.amount * i.price * .18 | number:'.2') : 0 | number:'.2' }}</span>
+        <span> Ukupno:
+          {{ i.amount && i.price ? (i.amount * i.price + (i.amount * i.price * .18) | number:'.2') : 0 | number:'.2' }}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<div>&nbsp;</div>
+
+<div class="row" *ngIf="categories.length > 0">
+  <div class="col-sm"></div>
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-header">
+        Total
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Cena: {{ getTotalAll() | number:'.2' }}
+        </li>
+        <li class="list-group-item">
+          Porez: {{ getTotalAll() * .18 | number:'.2'}}
+        </li>
+        <li class="list-group-item">
+          Ukupno: {{ (getTotalAll() + getTotalAll() * .18) | number:'.2'}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div>&nbsp;</div>
+
+<ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Sve kategorije</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li (click)="addCategory(v.category)" class="list-group-item" *ngFor="let v of values">
+            {{ v.category }}</li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>
+  
+  <ng-template #template2>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Svi kupci</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <li (click)="selectClient(c.id)" class="list-group-item" *ngFor="let c of clients">
+            {{ c.name }}</li>
+        </ul>
+      </div>
+    </div>
+  </ng-template>

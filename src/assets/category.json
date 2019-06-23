@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "category": "PRIPREMNI ZAVRSNI RADOVI"
+  },
+  {
+    "id": 2,
+    "category": "ISTRAZIVACKI RADOVI"
+  },
+  {
+    "id": 3,
+    "category": "DEMONTAZE I RUSENJA"
+  },
+  {
+    "id": 4,
+    "category": "ZEMLJANI RADOVI"
+  },
+  {
+    "id": 5,
+    "category": "ZIDARSKI RADOVI"
+  },
+  {
+    "id": 6,
+    "category": "BETONSKI I ARM. BETONSKI"
+  },
+  {
+    "id": 7,
+    "category": "TESARSKI RADOVI"
+  },
+  {
+    "id": 8,
+    "category": "POKRIVACKI RADOVI"
+  },
+  {
+    "id": 9,
+    "category": "IZOLATERSKI RADOVI"
+  },
+  {
+    "id": 10,
+    "category":"GRADJEVINSKA STOLARIJA"
+  },
+  {
+    "id": 11,
+    "category":"STOLARSKI RADOVI"
+  },
+  {
+    "id": 12,
+    "category":"BRAVARSKI RADOVI"
+  }
+]

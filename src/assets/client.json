@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "ELITNA PRIVATNA SREDNJA",
+    "address": "Bul. VOJVODE STEPE 11",
+    "city": "NOVI SAD 21000"
+  },
+  {
+    "id": 2,
+    "name": "FIRMA 2",
+    "address": "ADRESA 2",
+    "city": "GRAD 2"
+  },
+  {
+    "id": 3,
+    "name": "FIRMA 3",
+    "address": "ADRESA 3",
+    "city": "GRAD 3"
+  }
+]

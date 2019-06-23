@@ -1,0 +1,91 @@
+<div>&nbsp;</div>
+
+<p class="lead">
+  Podesavanja
+</p>
+
+<div class="row">
+  <div class="col-sm">
+    <div class="card">
+      <div class="card-body">
+        <form>
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Ime</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="name" [ngModel]="user?.name"
+                (ngModelChange)="user?.name ? user.name = $event : null">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Adresa</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="address" [ngModel]="user?.address"
+                (ngModelChange)="user?.address ? user.address = $event : null">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Fax</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="fax" [ngModel]="user?.fax"
+                (ngModelChange)="user?.fax ? user.fax = $event : null">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Maticni broj</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="mat" [ngModel]="user?.mat"
+                (ngModelChange)="user?.mat ? user.mat = $event : null">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">PIB</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="pib" [ngModel]="user?.pib"
+                (ngModelChange)="user?.pib ? user.pib = $event : null">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Reg. broj</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="reg" [ngModel]="user?.reg"
+                (ngModelChange)="user?.reg ? user.reg = $event : null">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Sifra delatnosti</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="sif" [ngModel]="user?.sif"
+                (ngModelChange)="user?.sif ? user.sif = $event : null">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Telefon</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="tel" [ngModel]="user?.tel"
+                (ngModelChange)="user?.tel ? user.tel = $event : null">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="" class="col-sm-2 col-form-label">Ziro racun</label>
+            <div class="col-sm-10">
+              <input class="form-control" id="" name="ziro" [ngModel]="user?.ziro"
+                (ngModelChange)="user?.ziro ? user.ziro = $event : null">
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary">Sacuvaj</button>
+      </div>
+    </div>
+  </div>
+</div>
